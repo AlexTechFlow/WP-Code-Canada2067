@@ -1,0 +1,38 @@
+<?php get_header() ?>
+
+	<div id="content" class="container">
+		<div id="main" role="main">
+
+			<?php while (have_posts()) : the_post() ?>
+
+				<div class="breadcrumb">
+					<a href="<?= home_url() ?>"><?= trans('Home','Accueil'); ?></a> &gt;
+					<?php if ($post->post_parent): ?>
+						<a href="<?= get_permalink($post->post_parent) ?>"><?= get_the_title($post->post_parent) ?></a> &gt;
+					<?php endif ?>
+					<a href="<?= get_permalink() ?>"><?php the_title() ?></a>
+				</div>
+
+				<div id="maincontent"></div>
+				<article class="row">
+					<header class="col-sm-12">
+						<h1><?php the_title() ?></h1>
+
+						<?php if (get_featured_image()): ?>
+							<div class="featured-image">
+								<img src="<?php the_featured_image('full') ?>" alt="<?php the_featured_image_alt() ?>">
+							</div>
+						<?php endif ?>
+
+					</header>
+					<div class="col-sm-offset-2 col-sm-8">
+						<?php the_content() ?>
+					</div>
+				</article>
+
+			<?php endwhile ?>
+
+		</div>
+	</div>
+
+<?php get_footer() ?>
