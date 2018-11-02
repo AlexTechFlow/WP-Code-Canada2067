@@ -1,0 +1,37 @@
+			<?php
+			// style="background-color:<?php the_sub_field('background_color')
+			// check if the flexible content field has rows of data
+			 if( have_rows('flexbox_items') ): ?>
+
+			 <div class="featured-items">
+
+			     <?php // loop through the rows of data
+			     while ( have_rows('flexbox_items') ) : the_row(); ?>
+
+
+              
+
+				        <?php if( get_row_layout() == 'item_wrapper' ): ?>
+
+	                    	<div class="featured-item-img">
+	                    	<img src="<?php the_sub_image_field('item_icon') ?>" alt="">
+					        </div>
+   
+							<div class="featured-item-txt">
+					       	<?php echo get_sub_field('item_text'); ?>
+					       </div>
+
+						 
+
+				        <?php endif; ?>
+					
+			    <?php endwhile; ?>
+
+
+			 
+
+			 <?php else : ?>
+
+			     // no layouts found
+
+			 <?php endif; ?>
